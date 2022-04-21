@@ -19,16 +19,15 @@ async def _(b,m):
 		if i.user.status in ["recently", "online", "offline"]:
 			if i.user.id not in allUser:
 				if i.user.username == None or i.user.username == False:
-					allUser.append(i.user.id)
+					allUser.append(i.user.mention)
 				else:
-					allUser.append(i.user.username)
+					allUser.append("@"+i.user.username)
 
-	await b.send_message(chat_id="me", text="**{} Adet Kullanıcı Liselendi!!**".format(len(allUser)))
+	a___a=""
+	for i in allUser:
+		a___a+=i+"\n"
 
-	with open("allUser.txt", "w+") as f:
-		f.write(str(allUser))
-
-	await b.send_document("me", "allUser.txt", caption="{} adet kullanıcı listelendi!!".format(len(allUser)))
+	await b.send_message(chat_id="me", text=a___a)
 	allUser.clear()
 
 app.run()
